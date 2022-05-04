@@ -34,10 +34,46 @@ Este é o server de um projeto que foi pensado para ser algo "Simples", mas que 
 
 #### 2- Instale todas as dependências
    `npm install`
+#### 3- Rode o Prisma
+   `npx prisma init`
 
-#### 3- Execute o server 
+#### 4- No arquivo schema.prisma copie e cole isto:
+```
+   generator client {
+      provider = "prisma-client-js"
+   }
+
+   datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+   }
+
+   model Feedback {
+      id String @id @default(uuid())
+
+      type       String
+      comment    String
+      screenshot String?
+
+      @@map("feedbacks")
+   }
+   ```
+#### 5- Crie as migrations no ambiente de dev ou produção com:
+ ```
+ //se for ambiente de dev
+ 
+ npx prisma migrate dev
+
+ //se for ambiente de produção
+
+ npx prisma migrate deploy
+ ```
+#### 6- Execute o server 
    `npm run dev`
 
+#### 7- Passo não obrigatório (caso deseje ver o seu banco de dados sem ter que instalar nada digite o comando no console)
+   `npx prisma studio`
+   
 ### 🔨 Features do Projeto ao qual o Server é conectado
 ###### project_features
 - `Hover`:  Ao passar o mouse sob o widget uma transição de cor ocorrerá  e aparecerá um texto escrito 'feedback'

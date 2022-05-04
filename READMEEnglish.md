@@ -33,9 +33,46 @@ This is the server of a project that was meant to be something "Simple", but tha
 #### 1- Clone the Project
 #### 2- Install all dependencies
    `npm install`
+#### 3- Launch Prisma
+   `npx prisma init`
 
-#### 3- Run the server 
+#### 4- In the schema.prisma file copy and paste this:
+```
+   generator client {
+      provider = "prisma-client-js"
+   }
+
+   datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+   }
+
+   model Feedback {
+      id String @id @default(uuid())
+
+      type       String
+      comment    String
+      screenshot String?
+
+      @@map("feedbacks")
+   }
+   ```
+#### 5- Create the migrations in the dev or production environment with:
+ ```
+ //if it is a dev environment
+ 
+ npx prisma migrate dev
+
+ //if it is a production environment
+
+ npx prisma migrate deploy
+ ```
+#### 6- Run the server 
    `npm run dev`
+
+#### 7- Non-required step (if you want to see your database without having to install anything type this command in the console)
+   `npx prisma studio`
+   
  
 ### 🔨 Project Features
 ###### project_features
