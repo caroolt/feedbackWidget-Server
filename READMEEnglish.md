@@ -27,6 +27,7 @@ This is the server of a project that was meant to be something "Simple", but tha
 - SQLite (Ambiente DEV)
 - Postgresql (Ambiente de produção)
 - Prisma
+- Jest
 
 ## 🛠️ Open and run the server
 ###### run_project
